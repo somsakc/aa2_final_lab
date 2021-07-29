@@ -1,5 +1,5 @@
 - name: Updatet ansible hosts file and DNS server
   hosts: control
-  become: true
+#  become: true
   roles:
     - update_dns
