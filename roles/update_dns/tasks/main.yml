@@ -1,5 +1,8 @@
 ---
 # tasks file for roles/update_dns
+- name: Print whoami
+  command: /usr/bin/whoami
+
 - name: Delete ansible hosts
   become: true
   when: inventory_update | default(true) | bool
