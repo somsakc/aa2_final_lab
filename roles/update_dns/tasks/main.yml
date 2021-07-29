@@ -14,7 +14,7 @@
 
 - name: gather facts
   os_server_info:
-    cloud: "{{ lookup('ENV', 'GUID') }}-project"
+    cloud: "{{ lookup('env', 'GUID') }}-project"
   register: osp_instances
 
 - name: Create in-memory inventory
