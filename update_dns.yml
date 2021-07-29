@@ -1,4 +1,4 @@
 - name: Updatet ansible hosts file and DNS server
-  hosts: control_node
+  hosts: control
   roles:
     - update_dns
