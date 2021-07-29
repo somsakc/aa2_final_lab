@@ -9,12 +9,9 @@
 
 - meta: refresh_inventory
 
-- debug:
-    msg: "{{ lookup('env', 'GUID') }}-project"
-
 - name: gather facts
   os_server_info:
-    cloud: "{{ lookup('env', 'GUID') }}-project"
+    cloud: "{{ GUID }}-project"
   register: osp_instances
 
 - name: Create in-memory inventory
