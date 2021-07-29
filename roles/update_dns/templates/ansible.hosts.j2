@@ -1,20 +1,8 @@
-[all]
- 
-towerfl.example.com ansible_host=192.168.53.12
- 
-control.example.com ansible_host=192.168.50.245
- 
-satellite.example.com ansible_host=192.168.50.177
-[ungrouped]
-[towerfl]
- 
-towerfl.example.com ansible_host=192.168.53.12
-[bastions]
- 
-control.example.com ansible_host=192.168.50.245
-[controls]
- 
-control.example.com ansible_host=192.168.50.245
-[satellites]
- 
-satellite.example.com ansible_host=192.168.50.177
+{%  for item in groups %}
+{% if item != "bastions,controls" %}
+[{{ item }}]
+{%   for entry in groups[item]  %}
+{{ entry }}.example.com ansible_host={{ hostvars[entry]['ansible_host'] }}
+{%  endfor %}
+{% endif %}
+{% endfor %}
