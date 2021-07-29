@@ -4,7 +4,7 @@
   become: true
   when: inventory_update | default(true) | bool
   file:
-    path: /etc/ansible/hosts
+    path: "{{ ansible_hosts_file }}"
     state: absent
 
 - meta: refresh_inventory
@@ -31,11 +31,9 @@
     - name: Copy ansible hosts
       become: true
       template:
-        src: templates/hosts.j2
-#        dest: /etc/ansible/hosts
-        dest: /tmp/ansible-hosts
+        src: ansible.hosts.j2
+        dest: "{{ ansible_hosts_file }}"
         mode: 0644
-
 
 - name: DNS pod record update
   become: true
@@ -43,7 +41,7 @@
   block:
     - name: Copy dns records
       template:
-        src: templates/example.com.zone.j2
-        dest: /tmp/example.com.zone
+        src: example.com.zone.j2
+        dest: "{{ dns_zone_file }}"
     - name: Restart dns server
       command: podman restart bind9
