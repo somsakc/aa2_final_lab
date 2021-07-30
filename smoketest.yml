@@ -1,5 +1,5 @@
-- name: End to end smoke tests - database servers
-  hosts: app_servers:database_servers
+- name: End to end smoke tests - database server
+  hosts: database_servers,app_servers
   gather_facts: true
   become: true
   tags:
