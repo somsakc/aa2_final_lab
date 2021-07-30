@@ -18,6 +18,7 @@
     ipv4.dns {{ hostvars['control'].ansible_default_ipv4.address }}
     +ipv4.dns {{ hostvars['control'].ansible_dns.nameservers.1 }}
     +ipv4.dns 8.8.8.8
+  register: network_update
 
 - name: restart network manager
   service:
