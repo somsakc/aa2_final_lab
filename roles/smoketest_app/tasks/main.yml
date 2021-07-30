@@ -2,7 +2,7 @@
 # tasks file for roles/smoketest_app
 - name: Check appserver for correct response
   uri:
-    url: "http://{{ inventory_hostname }}:8080/ping"
+    url: "http://{{ inventory_hostname }}.example.com:8080/ping"
     return_content: yes
   until: '"alive" in result.content'
   retries: 10
