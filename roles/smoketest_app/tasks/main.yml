@@ -20,4 +20,5 @@
   register: result
   delegate_to: localhost
   loop: groups.app_servers
+  loop_control:
     loop_var: __app_server
