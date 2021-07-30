@@ -1,2 +1,23 @@
 ---
 # tasks file for roles/smoketest_app
+- name: Check frontend webserver for correct response
+  uri:
+    url: "http://frontend1.example.com/ping"
+    return_content: yes
+  until: '"alive" in result.content'
+  retries: 10
+  delay: 1
+  register: result
+  delegate_to: localhost
+  
+- name: Check appserver for correct response
+  uri:
+    url: "http://{{ __app_server }}:8080/ping"
+    return_content: yes
+  until: '"alive" in result.content'
+  retries: 10
+  delay: 1
+  register: result
+  delegate_to: localhost
+  loop: groups.app_servers
+    loop_var: __app_server
