@@ -10,7 +10,7 @@
     - smoketest_database
 
 - name: End to end smoke tests - app serevers
-  hosts: load_balancers,app_servers
+  hosts: app_servers
   gather_facts: false
   become: false
   tags:
