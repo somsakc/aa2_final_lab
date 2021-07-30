@@ -1,4 +1,4 @@
-- name: End to end smoke tests
+- name: End to end smoke tests - database servers
   hosts: app_servers:database_servers
   gather_facts: true
   become: true
@@ -9,9 +9,9 @@
   roles:
     - smoketest_database
 
-- name: End to end smoke tests
-  hosts: app_servers
-  gather_facts: true
+- name: End to end smoke tests - app serevers
+  hosts: load_balancers,app_servers
+  gather_facts: false
   become: false
   tags:
     - smoketest
@@ -19,3 +19,14 @@
     - smoketest_app_servers
   roles:
     - smoketest_app
+
+- name: End to end smoke tests - loadbalancer serevers
+  hosts: load_balancers
+  gather_facts: false
+  become: false
+  tags:
+    - smoketest
+    - smoketest_load_balancers
+    - smoketest_loadbalancers
+  roles:
+    - smoketest_loadbalancer

@@ -9,7 +9,7 @@
     ssl_mode: disable
   delegate_to: "{{ __app_server }}"
   run_once: true
-  loop: groups.app_servers
+  loop: "{{ groups.app_servers }}"
   loop_control:
     loop_var: __app_server
   tags:

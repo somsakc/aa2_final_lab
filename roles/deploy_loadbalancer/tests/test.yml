@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - roles/smoke_test
+    - roles/deploy_loadbalancer
