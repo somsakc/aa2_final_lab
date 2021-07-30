@@ -1,8 +1,13 @@
 ---
 # tasks file for roles/deploy_database
+# follow the resolution from https://www.postgresql.org/download/linux/redhat/ to disable built-in PostgreSQL module from RHEL8.
+- name: Disable built-in PostgreSQL module
+  command: dnf -qy module disable postgresql
+
 - name: Install Postgres packages
   package:
     name: "{{ __package }}"
+    disable_gpg_check: true
     state: present
   loop: 
     - "{{ postgres_rhel8_repo }}"        
