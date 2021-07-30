@@ -12,13 +12,13 @@
   
 - name: Check appserver for correct response
   uri:
-    url: "http://{{ __app_server }}:8080/ping"
+    url: "http://{{ __app_server }}.example.com:8080/ping"
     return_content: yes
   until: '"alive" in result.content'
   retries: 10
   delay: 1
   register: result
   delegate_to: localhost
-  loop: groups.app_servers
+  loop: "{{ groups.app_servers }}"
   loop_control:
     loop_var: __app_server
