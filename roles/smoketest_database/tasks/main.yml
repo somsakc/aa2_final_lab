@@ -7,7 +7,12 @@
     login_user: flask
     login_password: redhat
     ssl_mode: disable
-  delegate_to: "{{ groups.app_servers[0] }}"
+  delegate_to: "{{ __app_server }}"
   run_once: true
+  loop: groups.app_servers
+  loop_control:
+    loop_var: __app_server
   tags:
     - smoketest
+    - smoketest_database
+    - smoketest_database_servers
