@@ -11,9 +11,9 @@
 
 - name: End to end smoke tests
   hosts: app_servers
-  become: false
   gather_facts: true
-  tags:
+  become: false
+tags:
     - smoketest
     - smoketest_app
     - smoketest_app_servers
